@@ -43,5 +43,30 @@ system verilog supports randomiztion in class which geneartes random number when
 	10. static constraints
 	11. implication operator constrants
 	12. inheritance in constraints
+*/
 
+module top;
+
+
+initial begin
+
+	$display("==========initial block==============");
+
+end
+
+forever begin
+
+
+#5 clk = ~ clk;
+
+	$display("==========clock geneartion =============");
+end
+
+
+
+
+
+
+
+endmodule
 
