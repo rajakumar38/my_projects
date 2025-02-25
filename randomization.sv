@@ -23,11 +23,11 @@ system verilog supports randomiztion in class which geneartes random number when
 	by default the randomiztion is enabled
 
 
-4. similar to that constraint also can be turned on and of using
+4. similar to that constraint also can be turned on and off using
 
 	constraint_name.constraint_mode(1) used to turn on the constraint
 	
-	constraint_name.constraint_mode(0) used to turn on the constraint
+	constraint_name.constraint_mode(0) used to turn off the constraint
 
 5. system verilog support different constraints those are
 
@@ -45,12 +45,38 @@ system verilog supports randomiztion in class which geneartes random number when
 	12. inheritance in constraints
 */
 
+
+class cls;
+
+	rand bit[3:0] addr;
+	rand bit[3:0] read;
+	rand bit[3:0] write;
+	rand bit[3:0] data;
+	rand bit write_en;
+	rand bit read_en;
+
+
+	function void display();
+
+		$display("===========================================================================================================================");
+		$display("====addr=%0d read=%0d write=%0d data=%0d write_en=%0d read_en=%0d=============",adr,read,write,data,write_en,read_en);
+		$display("===========================================================================================================================");
+
+	endfunction
+
+
+endclass
+
 module top;
 
+cls c1;
 
 initial begin
 
-	$display("==========initial block==============");
+	c1=new();
+
+	c1.randomize();
+	$display("==============initial block==============");
 
 end
 
@@ -59,13 +85,8 @@ forever begin
 
 #5 clk = ~ clk;
 
-	$display("==========clock geneartion =============");
+	$display("========== clock geneartion =============");
 end
-
-
-
-
-
 
 
 endmodule
